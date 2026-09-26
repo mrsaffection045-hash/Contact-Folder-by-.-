@@ -1,65 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Folder Access - Mr Affection</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:system-ui;display:flex;justify-content:center;align-items:center;min-height:100vh}
-.card{background:#121212;border:1px solid #333;width:100%;max-width:400px;padding:25px;border-radius:20px}
-input,select{width:100%;padding:14px;margin-top:12px;border-radius:12px;border:1px solid #333;background:#1f1f1f;color:#fff;outline:none}
-button{width:100%;padding:14px;margin-top:15px;border-radius:12px;border:none;background:#ff2e63;color:#fff;font-weight:bold;font-size:16px;cursor:pointer}
-#ok{display:none;text-align:center;font-size:18px;font-weight:bold;color:#ff2e63;line-height:1.5}
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:-apple-system,system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:15px}
+.card{background:#121212;border:1px solid #222;width:100%;max-width:380px;padding:28px;border-radius:24px;box-shadow:0 10px 40px rgba(255,46,99,0.1)}
+h2{text-align:center;margin:0 0 5px 0;color:#ff2e63}
+p.sub{text-align:center;color:#888;font-size:14px;margin:0 0 20px 0}
+input,select{width:100%;padding:14px;margin-top:12px;border-radius:12px;border:1px solid #333;background:#1e1e1e;color:#fff;outline:none;font-size:15px}
+input:focus,select:focus{border-color:#ff2e63}
+.row{display:flex;gap:10px}
+button{width:100%;padding:15px;margin-top:18px;border-radius:12px;border:none;background:#ff2e63;color:#fff;font-weight:800;font-size:16px;cursor:pointer;transition:0.2s}
+button:disabled{opacity:0.6}
+#ok{display:none;text-align:center;padding:20px 0}
+#ok .icon{font-size:45px}
+#ok .msg{font-size:19px;font-weight:bold;color:#ff2e63;line-height:1.6;margin-top:15px}
 </style>
 </head>
 <body>
 <div class="card">
-<form id="form">
-<input id="name" placeholder="Your Name" required>
-<div style="display:flex;gap:8px">
-<input id="country" value="+509" style="width:90px" required>
-<input id="number" placeholder="Phone Number" type="tel" required>
-</div>
-<select id="gender" required>
-<option value="">Select Gender</option>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
-</select>
-<button type="submit">Join Folder</button>
-</form>
-<div id="ok">ᴍʀ. ᴀғғᴇᴄᴛɪᴏɴ࿐❤️ resevwa demand ou an e ou fè pati de folder a Merci!</div>
+  <h2>Folder Access</h2>
+  <p class="sub">Antre enfòmasyon w yo pou w jwenn aksè</p>
+  
+  <form id="folderForm">
+    <input id="Name" type="text" placeholder="Non konplè ou" required>
+    
+    <div class="row">
+      <input id="Country" type="text" value="+509" style="width:100px;text-align:center" required>
+      <input id="Number" type="tel" placeholder="Nimewo telefòn" required>
+    </div>
+
+    <select id="Gender" required>
+      <option value="">Chwazi Sèks ou</option>
+      <option value="Gason">Gason</option>
+      <option value="Fi">Fi</option>
+    </select>
+
+    <button type="submit" id="btnSubmit">Antre nan Folder a</button>
+  </form>
+
+  <div id="ok">
+    <div class="icon">✅</div>
+    <div class="msg">ᴍʀ. ᴀғғᴇᴄᴛɪᴏɴ࿐❤️ resevwa demand ou an e ou fè pati de folder a Merci!</div>
+  </div>
 </div>
 
 <script>
-// YOUR SUPABASE INFO
-const SUPABASE_URL = "https://pzdrwczfampybkjcmwqp.supabase.co";
-const SUPABASE_KEY = "sb_publishable_LEd8bVkXvcuyXn8q8LojwQ_mJur5TNL";
-
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-document.getElementById("form").addEventListener("submit", async (e)=>{
-e.preventDefault();
-const btn = e.target.querySelector("button");
-btn.innerText = "Sending...";
-btn.disabled = true;
-
-const { error } = await client.from("folder_contacts").insert([{
-Name: document.getElementById("name").value.trim(),
-Number: document.getElementById("number").value.trim(),
-Country: document.getElementById("country").value.trim(),
-Gender: document.getElementById("gender").value
-}]);
-
-if(error){
-  alert("Error: " + error.message);
-  btn.innerText = "Join Folder";
-  btn.disabled = false;
-} else {
-  document.getElementById("form").style.display="none";
-  document.getElementById("ok").style.display="block";
-}
-});
-</script>
-</body>
-</html>
+// K
